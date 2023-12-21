@@ -1,8 +1,17 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import UsersTable from '../src/components/UsersTable';
+import UserPosts from '../src/components/UserPosts';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+function App() {
+  return (
+    <Router>
+      <Switch>
+        <Route exact path="/" component={UsersTable} />
+        <Route path="/user/:userId/posts" component={UserPosts} />
+      </Switch>
+    </Router>
+  );
+}
+
+export default App;

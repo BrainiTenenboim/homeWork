@@ -1,25 +1,25 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import UsersTable from './components/UsersTable/UsersTable';
+import Loader from './components/Loader/Loader';
 import './App.css';
 
-function App() {
+const App = () => {
+  const [showLoader, setShowLoader] = useState(false);
+
+  const setLoader = (value) => {
+    setShowLoader(value);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <header className="header"></header>
+      <main className="main">
+        <UsersTable setLoader={setLoader}></UsersTable> {/* Render the UsersTable component and pass the setLoader function as a prop */}
+        {showLoader && <Loader></Loader>} {/* Render the Loader component conditionally based on the showLoader state */}
+      </main>
+      <footer className="footer"></footer>
     </div>
   );
-}
+};
 
 export default App;
